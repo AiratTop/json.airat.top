@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>json.airat.top — JSON Formatter & Validator</title>
+    <meta
+      name="description"
+      content="Local JSON formatter, minifier, validator, sorter, and JSON↔YAML converter. Private, fast, and fully local."
+    />
+    <meta
+      name="keywords"
+      content="json formatter, json validator, json minify, yaml converter, json sort keys, airattop"
+    />
+    <meta name="author" content="AiratTop" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://json.airat.top/" />
+    <meta property="og:title" content="JSON Formatter & Validator" />
+    <meta
+      property="og:description"
+      content="Format, minify, validate, sort keys, and convert JSON↔YAML directly in your browser."
+    />
+    <meta property="og:image" content="https://json.airat.top/canvas.jpg" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="JSON Formatter & Validator" />
+    <meta
+      property="twitter:description"
+      content="Local JSON utilities: format, minify, validate, sort, JSON↔YAML."
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <meta name="msvalidate.01" content="A4ADBC8E0D3C862E117640B06AC788E3" />
+    <meta name="google-site-verification" content="zuHpP1sB8u4uv7gVtMj2RNaGCoxq2lGMYENOCMovy1Y" />
+    <meta name="yandex-verification" content="6d08a6d5c02c329e" />
+    <link rel="canonical" href="https://json.airat.top/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CVEGGNPJXK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-CVEGGNPJXK");
+    </script>
+  </head>
+  <body>
+    <div class="backdrop">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">json</div>
+          <div>
+            <h1>JSON Formatter & Validator</h1>
+            <p>Private, fast, and fully local.</p>
+          </div>
+        </div>
+        <div class="controls" role="group" aria-label="JSON controls">
+          <button class="btn" id="formatBtn" type="button">Format</button>
+          <button class="btn btn--ghost" id="minifyBtn" type="button">Minify</button>
+          <button class="btn btn--ghost" id="sortBtn" type="button">Sort Keys</button>
+          <button class="btn btn--ghost" id="jsonToYamlBtn" type="button">JSON→YAML</button>
+          <button class="btn btn--ghost" id="yamlToJsonBtn" type="button">YAML→JSON</button>
+          <button class="btn btn--ghost" id="copyBtn" type="button">Copy</button>
+          <button class="btn btn--ghost" id="downloadBtn" type="button">Download</button>
+          <button class="btn btn--ghost" id="resetBtn" type="button">Reset</button>
+          <label class="toggle">
+            <input id="darkMode" type="checkbox" />
+            <span>Dark Mode</span>
+          </label>
+          <a
+            class="repo"
+            href="https://github.com/AiratTop/json.airat.top"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            GitHub
+          </a>
+        </div>
+      </header>
+
+      <main class="split" id="splitPane">
+        <section class="pane">
+          <div class="pane__header pane__header--between">
+            <span>Input</span>
+            <span class="pane__meta">JSON or YAML</span>
+          </div>
+          <textarea
+            id="inputArea"
+            spellcheck="false"
+            aria-label="JSON or YAML input"
+          ></textarea>
+        </section>
+        <div
+          class="divider"
+          id="dragHandle"
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="Resize panels"
+        ></div>
+        <section class="pane">
+          <div class="pane__header pane__header--between">
+            <span>Output</span>
+            <span class="pane__meta" id="outputMeta">Ready</span>
+          </div>
+          <textarea
+            id="outputArea"
+            spellcheck="false"
+            aria-label="Formatted output"
+            readonly
+          ></textarea>
+        </section>
+      </main>
+
+      <div class="error" id="errorBox" aria-live="polite"></div>
+      <div class="status" id="status" aria-live="polite"></div>
+
+      <footer class="doc-footer">
+        <p>
+          © 2026
+          <a href="https://airat.top" target="_blank" rel="author">Airat.Top</a>
+          |
+          <a href="https://github.com/AiratTop/json.airat.top" target="_blank" rel="noreferrer">GitHub</a>
+          |
+          <a href="https://privacy.airat.top" target="_blank" rel="noreferrer privacy-policy">Privacy</a>
+          |
+          <a href="https://terms.airat.top" target="_blank" rel="noreferrer terms-of-service">Terms</a>
+        </p>
+      </footer>
+    </div>
+
+    <script src="vendor/js-yaml.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

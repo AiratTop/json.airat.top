@@ -149,15 +149,25 @@ body::before {
 }
 
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 999px;
   padding: 10px 18px;
   font-weight: 600;
+  line-height: 1.1;
   background: linear-gradient(120deg, var(--accent), #ff8451);
   color: #0f141c;
   cursor: pointer;
   box-shadow: var(--glow);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn__arrow {
+  display: inline-block;
+  margin: 0 0.08em;
+  transform: translateY(-0.08em);
 }
 
 .btn:hover {

@@ -2,7 +2,7 @@
 
 [![json.airat.top](https://raw.githubusercontent.com/AiratTop/json.airat.top/main/public_html/canvas.jpg)](https://json.airat.top/)
 
-A local, private JSON utility for formatting, minifying, validation, key sorting, and JSON↔YAML conversion. Runs as a pure static site and works on Cloudflare Pages or GitHub Pages.
+A local, private JSON utility for formatting, minifying, validation, key sorting, JSON↔YAML conversion, and XML→JSON conversion. Runs as a pure static site and works on Cloudflare Pages or GitHub Pages.
 
 The app is published at: https://json.airat.top/
 
@@ -12,6 +12,7 @@ The app is published at: https://json.airat.top/
 - JSON validation with line and column error details.
 - Deep key sorting for JSON objects.
 - JSON→YAML and YAML→JSON conversion.
+- XML→JSON conversion.
 - Copy, download, reset-to-example, dark mode, and local settings persistence.
 - No server, no API, no third-party backend.
 

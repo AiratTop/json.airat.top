@@ -6,11 +6,11 @@
     <title>json.airat.top — JSON Formatter & Validator</title>
     <meta
       name="description"
-      content="Local JSON formatter, minifier, validator, sorter, and JSON↔YAML converter. Private, fast, and fully local."
+      content="Local JSON formatter, minifier, validator, sorter, plus JSON↔YAML and XML→JSON conversion. Private, fast, and fully local."
     />
     <meta
       name="keywords"
-      content="json formatter, json validator, json minify, yaml converter, json sort keys, airattop"
+      content="json formatter, json validator, json minify, yaml converter, xml to json, json sort keys, airattop"
     />
     <meta name="author" content="AiratTop" />
 
@@ -19,7 +19,7 @@
     <meta property="og:title" content="JSON Formatter & Validator" />
     <meta
       property="og:description"
-      content="Format, minify, validate, sort keys, and convert JSON↔YAML directly in your browser."
+      content="Format, minify, validate, sort keys, and convert JSON↔YAML or XML→JSON directly in your browser."
     />
     <meta property="og:image" content="https://json.airat.top/canvas.jpg" />
 
@@ -27,7 +27,7 @@
     <meta property="twitter:title" content="JSON Formatter & Validator" />
     <meta
       property="twitter:description"
-      content="Local JSON utilities: format, minify, validate, sort, JSON↔YAML."
+      content="Local JSON utilities: format, minify, validate, sort, JSON↔YAML, XML→JSON."
     />
     <link rel="stylesheet" href="styles.css" />
 
@@ -70,6 +70,9 @@
           <button class="btn btn--ghost" id="yamlToJsonBtn" type="button">
             YAML<span class="btn__arrow" aria-hidden="true">→</span>JSON
           </button>
+          <button class="btn btn--ghost" id="xmlToJsonBtn" type="button">
+            XML<span class="btn__arrow" aria-hidden="true">→</span>JSON
+          </button>
           <button class="btn btn--ghost" id="copyBtn" type="button">Copy</button>
           <button class="btn btn--ghost" id="downloadBtn" type="button">Download</button>
           <button class="btn btn--ghost" id="resetBtn" type="button">Reset</button>
@@ -92,12 +95,12 @@
         <section class="pane">
           <div class="pane__header pane__header--between">
             <span>Input</span>
-            <span class="pane__meta">JSON or YAML</span>
+            <span class="pane__meta">JSON, YAML or XML</span>
           </div>
           <textarea
             id="inputArea"
             spellcheck="false"
-            aria-label="JSON or YAML input"
+            aria-label="JSON, YAML or XML input"
           ></textarea>
         </section>
         <div

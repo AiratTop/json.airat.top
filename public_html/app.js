@@ -5,6 +5,7 @@ const minifyBtn = document.getElementById("minifyBtn");
 const sortBtn = document.getElementById("sortBtn");
 const jsonToYamlBtn = document.getElementById("jsonToYamlBtn");
 const yamlToJsonBtn = document.getElementById("yamlToJsonBtn");
+const xmlToJsonBtn = document.getElementById("xmlToJsonBtn");
 const copyBtn = document.getElementById("copyBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 const resetBtn = document.getElementById("resetBtn");
@@ -161,7 +162,7 @@ const ensureInput = () => {
   if (inputArea.value.trim()) {
     return true;
   }
-  showError("Input is empty. Paste JSON or YAML first.");
+  showError("Input is empty. Paste JSON, YAML, or XML first.");
   showStatus("Input is empty", true);
   return false;
 };
@@ -294,6 +295,112 @@ const runYamlToJson = () => {
   }
 };
 
+const parseXmlDetailed = (text) => {
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(text, "application/xml");
+  const parserError = xmlDoc.querySelector("parsererror");
+
+  if (!parserError) {
+    if (!xmlDoc.documentElement) {
+      return {
+        ok: false,
+        message: "XML document has no root element.",
+      };
+    }
+    return {
+      ok: true,
+      value: xmlDoc,
+    };
+  }
+
+  const message = parserError.textContent?.replace(/\s+/g, " ").trim() || "Invalid XML";
+  const lineMatch = message.match(/line\s+(\d+)/i);
+  const columnMatch = message.match(/(?:column|col)\s+(\d+)/i);
+
+  return {
+    ok: false,
+    message,
+    line: lineMatch ? Number(lineMatch[1]) : undefined,
+    column: columnMatch ? Number(columnMatch[1]) : undefined,
+  };
+};
+
+const elementToJson = (element) => {
+  const output = {};
+  const attributes = Array.from(element.attributes || []);
+  if (attributes.length > 0) {
+    output["@attributes"] = attributes.reduce((acc, attribute) => {
+      acc[attribute.name] = attribute.value;
+      return acc;
+    }, {});
+  }
+
+  const elementChildren = Array.from(element.children || []);
+  const textParts = Array.from(element.childNodes || [])
+    .filter((node) => node.nodeType === Node.TEXT_NODE || node.nodeType === Node.CDATA_SECTION_NODE)
+    .map((node) => node.nodeValue?.trim() || "")
+    .filter(Boolean);
+
+  if (elementChildren.length === 0) {
+    if (attributes.length === 0) {
+      if (textParts.length === 0) {
+        return null;
+      }
+      return textParts.join(" ");
+    }
+
+    if (textParts.length > 0) {
+      output["#text"] = textParts.join(" ");
+    }
+    return output;
+  }
+
+  elementChildren.forEach((child) => {
+    const key = child.nodeName;
+    const value = elementToJson(child);
+    if (Object.prototype.hasOwnProperty.call(output, key)) {
+      if (!Array.isArray(output[key])) {
+        output[key] = [output[key]];
+      }
+      output[key].push(value);
+      return;
+    }
+    output[key] = value;
+  });
+
+  if (textParts.length > 0) {
+    output["#text"] = textParts.join(" ");
+  }
+
+  return output;
+};
+
+const runXmlToJson = () => {
+  if (!ensureInput()) {
+    return;
+  }
+  clearError();
+
+  const parsed = parseXmlDetailed(inputArea.value);
+  if (!parsed.ok) {
+    if (parsed.line && parsed.column) {
+      showError(`Invalid XML at line ${parsed.line}, column ${parsed.column}: ${parsed.message}`);
+    } else {
+      showError(`Invalid XML: ${parsed.message}`);
+    }
+    showStatus("XML validation error", true);
+    outputMeta.textContent = "Error";
+    return;
+  }
+
+  const root = parsed.value.documentElement;
+  const jsonObject = {
+    [root.nodeName]: elementToJson(root),
+  };
+  setOutput(JSON.stringify(jsonObject, null, 2), "json");
+  showStatus("Converted XML to JSON");
+};
+
 const copyOutput = async () => {
   const text = outputArea.value.trim() ? outputArea.value : inputArea.value;
   if (!text.trim()) {
@@ -399,6 +506,7 @@ minifyBtn.addEventListener("click", runMinify);
 sortBtn.addEventListener("click", runSortKeys);
 jsonToYamlBtn.addEventListener("click", runJsonToYaml);
 yamlToJsonBtn.addEventListener("click", runYamlToJson);
+xmlToJsonBtn.addEventListener("click", runXmlToJson);
 copyBtn.addEventListener("click", copyOutput);
 downloadBtn.addEventListener("click", downloadOutput);
 resetBtn.addEventListener("click", resetToSample);

@@ -4,7 +4,8 @@
 
 A local, private JSON utility for formatting, minifying, validation, key sorting, JSON↔YAML conversion, and XML→JSON conversion. Runs as a pure static site and works on Cloudflare Pages or GitHub Pages.
 
-The app is published at: https://json.airat.top/
+Live site: https://json.airat.top
+Status page: https://status.airat.top
 
 ## Features
 

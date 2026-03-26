@@ -7,6 +7,8 @@ A local, private JSON utility for formatting, minifying, validation, key sorting
 - Live site: https://json.airat.top
 - Status page: https://status.airat.top
 
+[![json.airat.top](https://raw.githubusercontent.com/AiratTop/json.airat.top/main/public_html/screenshot.png)](https://json.airat.top/)
+
 ## Features
 
 - Format and minify JSON.

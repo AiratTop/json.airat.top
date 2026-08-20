@@ -5,7 +5,8 @@ Public browser tool for JSON formatting, validation, and conversions (`json.aira
 
 ## Repository Role
 - Category: `*.airat.top` (public static tool).
-- Deployment platform: Cloudflare Pages.
+- Deployment platform: Cloudflare Workers (static assets).
+- Deployment configuration: `wrangler.jsonc`.
 - Main content directory: `public_html`.
 
 ## Content and Structure

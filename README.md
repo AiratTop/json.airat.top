@@ -2,7 +2,7 @@
 
 [![json.airat.top](https://raw.githubusercontent.com/AiratTop/json.airat.top/main/public_html/canvas.jpg)](https://json.airat.top/)
 
-A local, private JSON utility for formatting, minifying, validation, key sorting, JSON↔YAML conversion, and XML→JSON conversion. Runs as a pure static site and works on Cloudflare Pages or GitHub Pages.
+A local, private JSON utility for formatting, minifying, validation, key sorting, JSON↔YAML conversion, and XML→JSON conversion. Runs as a pure static site and is deployed as static assets on Cloudflare Workers.
 
 - Live site: https://json.airat.top
 - Status page: https://status.airat.top
@@ -22,6 +22,10 @@ A local, private JSON utility for formatting, minifying, validation, key sorting
 ## Local usage
 
 Open `public_html/index.html` in your browser.
+
+## Deployment
+
+Cloudflare Workers Builds deploys the contents of `public_html` as static assets. The project has no build step; deployment uses `npx wrangler deploy` with the settings in `wrangler.jsonc`.
 
 ## License
 
